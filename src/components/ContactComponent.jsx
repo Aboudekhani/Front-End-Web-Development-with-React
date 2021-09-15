@@ -160,7 +160,6 @@ class Contact extends Component {
                                  onBlur={this.handelBlur('telnum')}
                                  onChange={this.handelInputChange}></Input>
                                  <FormFeedback>{errors.telnum}</FormFeedback>
-
                             </Col>
                             </FormGroup>
                         <FormGroup row>
