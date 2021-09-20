@@ -1,14 +1,13 @@
 import React,{Component} from 'react';
 import {Breadcrumb,BreadcrumbItem,Button,  Label,Col, Row }from 'reactstrap'
 import {Link} from 'react-router-dom'
-import {Control, LocalForm, Errors} from 'react-redux-form'
+import {Control, Form, Errors} from 'react-redux-form'
 
 
 const required =(val)=>val && val.length 
 const maxLength =(len)=> (val) =>!(val) || (val.length<= len)
 const minLength =(len)=> (val) =>val && (val.length>= len)
 const isNumber =(val)=>isNaN(Number(val))
-const validEmail=(val)=>/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2-4}$/i.test(val)
 
 class Contact extends Component {
     constructor(props){
@@ -20,6 +19,7 @@ class Contact extends Component {
     handelSumit(values){
         console.log("current state is: "+ JSON.stringify(values))
         alert("current state is: "+ JSON.stringify(values))
+        this.props.resetFeedbackForm();
 
     }
     
@@ -70,7 +70,7 @@ class Contact extends Component {
                     <h3>Send us your feedback</h3>
                 </div>
                 <div className='col-12 col-md-9'>
-                    <LocalForm onSubmit={(values)=>this.handelSumit(values)}>
+                    <Form  model='feedback' onSubmit={(values)=>this.handelSumit(values)}>
                         <Row className="form-group">
                             <Label for='firstName' md={2}>First Name </Label>
                             <Col md={10}>
@@ -135,7 +135,7 @@ class Contact extends Component {
                                 className="form-control"
                                 validators={{
                                     required,
-                                    validEmail
+                                    
                                 }}
                                 
                                 />
@@ -173,7 +173,7 @@ class Contact extends Component {
                                 <Button color="primary" type="submit">send Feedback</Button>
                             </Col>
                         </Row>
-                    </LocalForm>
+                    </Form>
 
                 </div>
             </div>
